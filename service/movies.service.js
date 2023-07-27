@@ -28,7 +28,7 @@ export async function getMoviesById(id) {
     .findOne({ id: id });
 }
 
-export async function getMovie() {
+export async function getMovies() {
   return await client 
     .db("b42wd2")
     .collection("movies")

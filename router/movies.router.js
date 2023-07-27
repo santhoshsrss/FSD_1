@@ -1,6 +1,7 @@
 import express from "express";
+import {auth} from "../middleware/auth.js";
 import {
-  getMovie,
+  getMovies,
   getMoviesById,
   deleteMoviesById,
   createMovies,
@@ -9,14 +10,15 @@ import {
 const router = express.Router();
 
 //! connect get method to mongodb server
-router.get("/", async function (request, response) {
+router.get("/", auth, async function (request, response) {
   //* curser => means pagination || curser can be converted in array by using toArray()
-  const movies = await getMovie();
+  const movies = await getMovies();
+  // console.log(movies)
   response.send(movies);
 });
 
 //! connect using ID and get the specific data in mongodb.
-router.get("/:id", async function (request, response) {
+router.get("/:id", auth, async function (request, response) {
   const { id } = request.params;
   //* Mongodb Connection
 
@@ -28,7 +30,7 @@ router.get("/:id", async function (request, response) {
 });
 
 //! connect using ID and DELETE the specific data in mongodb.
-router.delete("/:id", async function (request, response) {
+router.delete("/:id", auth, async function (request, response) {
   const { id } = request.params;
   //* Mongodb Connection
 
