@@ -3,7 +3,8 @@ dotenv.config();
 import express from "express";
 import { MongoClient } from "mongodb";
 import moviesRouter from "./router/movies.router.js";
-
+import cors from "cors";
+//! CORS = Cross-Origin Resource Sharing. 
 
 const app = express();
 const PORT = process.env.PORT;
@@ -15,6 +16,9 @@ export const client = new MongoClient(MONGO_URL);
 //! it is a top level await so we don't need to use async:
 await client.connect();
 console.log("Mongodb is connect");
+
+//! Using CORS -> is a third party middleware
+app.use(cors())
 
 //! express.json() - inbuilt middleware
 //! This middleware will convert the body into json
