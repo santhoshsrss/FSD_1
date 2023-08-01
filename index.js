@@ -17,7 +17,7 @@ const MONGO_URL = process.env.MONGO_URL;
 export const client = new MongoClient(MONGO_URL);
 //! it is a top level await so we don't need to use async:
 await client.connect();
-console.log("Mongodb is connect");
+console.log("Mongodb is started Running in the System");
 
 //! Using CORS -> is a third party middleware
 app.use(cors())
